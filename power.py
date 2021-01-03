@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 
 app = Flask(__name__,
             static_url_path = "", 
@@ -8,6 +8,10 @@ app = Flask(__name__,
 # Index
 @app.route('/')
 def index():
-    return index.html
-    #content = send_from_directory('staticpages', "index.html")
-    #return content
+    index= send_from_directory('staticpages', "index.html")
+    return index
+
+
+# Run main
+if __name__ == "__main__":
+   app.run(debug=True)

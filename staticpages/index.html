@@ -1,0 +1,34 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        Index.html basic
+        
+        <div>
+            <!-- Input and button -->
+            <input id="inputNum">
+            <button onclick="testFunction()">Go!</button>
+        </div>
+        
+        
+        <!-- Output here -->
+        <div id="output">
+            
+        </div> 
+    
+        <script>
+            // Get input from box and put result into another div
+            function testFunction() {
+                var output = document.getElementById("inputNum").value
+                console.log(output)
+                document.getElementById("output").innerHTML = output
+            }
+        </script>   
+    
+    
+    </body>
+
+    
+</html>
