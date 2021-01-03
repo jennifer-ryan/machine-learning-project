@@ -4,13 +4,14 @@
     </head>
 
     <body>
-        Index.html basic
+        Input:
         
-        <div>
+        <form action="{{url_for('predict')}}" method="POST">
             <!-- Input and button -->
-            <input id="inputNum">
-            <button onclick="testFunction()">Go!</button>
-        </div>
+            <input type="number" name="input" id="windSpeed" required="required" placeholder="Enter Wind Speed">
+            <input type="submit" value="Predict Power">
+            <!--<button onclick="testFunction()">Go!</button>-->
+        </form>
         
         
         <!-- Output here -->
@@ -21,7 +22,7 @@
         <script>
             // Get input from box and put result into another div
             function testFunction() {
-                var output = document.getElementById("inputNum").value
+                var output = document.getElementById("windSpeed").value
                 console.log(output)
                 document.getElementById("output").innerHTML = output
             }
