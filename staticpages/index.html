@@ -1,31 +1,118 @@
 <html>
     <head>
+        <!-- Links for form adapted from https://bootsnipp.com/snippets/rl98z-->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+        <style>
+            body {
+                background-color: #D6EAF8;
+            }
+
+            .card {
+                border: 2px solid #3498DB;
+                position: relative
+            }
+        </style>
     </head>
 
     <body>
-        Input:
-        <!-- -->
-        <form action="{{url_for('predict')}}" method="POST">
-            <!-- Input and button -->
-            <input type="number" name="input" id="windSpeed" required="required" placeholder="Enter Wind Speed">
-            <input type="submit" value="Predict Power">
-            <!--<button onclick="testFunction()">Go!</button>-->
-        </form>
-        
-        
-        <!-- Output here -->
-        <div id="output">
-            Prediction: {{prediction}}
-        </div> 
-    
-        <script>
-            // Get input from box and put result into another div
-           // function testFunction() {
-            //    var output = document.getElementById("windSpeed").value
-            //    console.log(output)
-            //    document.getElementById("output").innerHTML = output
-            }
+
+        <div class="container">
+            <div class="row justify-content-center align-items-center" style="height:100vh">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{url_for('predict')}}" method="POST">
+                                
+                                <!-- Input -->
+                                <div id="input">
+                                    <h3>1. Enter Wind Speed</h3>
+                                    <br>                                   
+                                    Please enter a number:
+                                    <br>
+                                    <!-- Prompt to enter a number -->
+                                    <input type="number" step="any" name="input" id="speed" required="required" placeholder="Enter number">
+                                        <br><br>
+                                        Select measurement units:
+                                        <!-- Choices for wind speed units -->
+                                        <select id="unit">
+                                            <option value="mps" selected="selected">Metres per Second</option>
+                                            <option value="kph">Kilometres per Hour</option>
+                                            <option value="mph">Miles per Hour</option>
+                                        </select>
+                                        <br><br>
+                                    <!-- Button to submit number and unit - goes to function-->
+                                    <input type="button" id="convert" value="Next" onclick="convertUnit()"  class="btn btn-outline-primary">
+                                </div>    
+                                
+                                <div id="predict" style="display:none">
+                                    <h3>2. Make Prediction</h3>
+                                    <br>
+                                    Value converted to metres per second:
+                                    <br>
+                                    <input type="number" step="any" name="input" id="windSpeed" value = "" required="required" placeholder="Wind Speed m/s" readonly> 
+                                    <br><br>
+                                    <input type="submit" value="Predict Power" class="btn btn-outline-primary">
+
+                                </div>
+                                
+                                <!-- Output  -->
+                                <div id="output" style="display:none">
+                                    3. Result 
+                                    Prediction: {{prediction}} kW
+                                </div> 
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>    
+            // Convert number to m/s depending on units and check value
+            function convertUnit(){
+                // Get values from input box and dropdown menu
+                num = document.getElementById("speed").value
+                unit = document.getElementById("unit").value
+                
+                // Check for empty input
+                if (num == "" ) {
+                    alert("Please enter a number.")
+                    return
+                }
+
+                // Convert to kph
+                if (unit == "kph") {
+                    result = num / 3.6
+                }
+                // Convert to mph
+                else if (unit == "mph") {
+                    result = num / 2.237
+                }
+                // Default value m/s
+                else {
+                    result = num
+                }
+                
+                // Checking result in correct range
+                if (result < 0) {
+                    alert("You must enter a positive number.")
+                } 
+                else if (result > 24.4) {
+                    alert("The turbine ceases to function at wind speeds higher than 24.4m/s / 87.8kph / 54.5mph. Please enter a smaller number.")
+                }
+                
+                // Hide input section
+                document.getElementById("input").style.display = "none"
+                // Display prediction section
+                document.getElementById("predict").style.display = "block"
+                // Put result into input box
+                document.getElementById("windSpeed").value = result
+           }
+
         </script>   
     
     
