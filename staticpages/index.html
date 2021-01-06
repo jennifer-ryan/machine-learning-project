@@ -14,13 +14,26 @@
                 border: 2px solid #3498DB;
                 position: relative
             }
+
+            .header {
+                padding: 15px;
+                text-align: center;
+                background: #3498DB;
+                color: white;
+                font-size: 30px;
+                }
         </style>
     </head>
 
     <body>
+        <div class="header">
+            <h1>Predict Wind Power Output</h1>
+            <p>Simply enter the wind speed and the model will predict the turbine's power output.</p>
+          </div>
+
 
         <div class="container">
-            <div class="row justify-content-center align-items-center" style="height:100vh">
+            <div class="row justify-content-center align-items-center" style="height:80vh" style="width:100">
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body">
@@ -28,7 +41,7 @@
                                 
                                 <!-- Input -->
                                 <div id="input">
-                                    <h3>1. Enter Wind Speed</h3>
+                                    <h3>Enter Wind Speed</h3>
                                     <br>                                   
                                     Please enter a number:
                                     <br>
@@ -44,25 +57,30 @@
                                         </select>
                                         <br><br>
                                     <!-- Button to submit number and unit - goes to function-->
-                                    <input type="button" id="convert" value="Next" onclick="convertUnit()"  class="btn btn-outline-primary">
+                                    <input type="button" id="convert" value="Convert" onclick="convertUnit()"  class="btn btn-outline-primary">
+                                
+                                    <div id="predict">
+                                        <br>
+                                        
+                                        <input type="number" step="any" name="input" id="windSpeed" value = "" required="required" placeholder="Wind Speed m/s" readonly> 
+                                        <br><br>
+                                        <input type="submit" value="Predict Power" class="btn btn-outline-primary">
+                                        <br><br>
+                                    </div>
+                                    
+                                    <!-- Output  -->
+                                    <div id="output">
+                                        Result:  
+                                        <br>
+                                        <input value={{prediction}}>
+                                    </div> 
+                                    
+
+
+
                                 </div>    
                                 
-                                <div id="predict" style="display:none">
-                                    <h3>2. Make Prediction</h3>
-                                    <br>
-                                    Value converted to metres per second:
-                                    <br>
-                                    <input type="number" step="any" name="input" id="windSpeed" value = "" required="required" placeholder="Wind Speed m/s" readonly> 
-                                    <br><br>
-                                    <input type="submit" value="Predict Power" class="btn btn-outline-primary">
-
-                                </div>
                                 
-                                <!-- Output  -->
-                                <div id="output" style="display:none">
-                                    3. Result 
-                                    Prediction: {{prediction}} kW
-                                </div> 
                             </form>   
                         </div>
                     </div>
@@ -100,18 +118,27 @@
                 // Checking result in correct range
                 if (result < 0) {
                     alert("You must enter a positive number.")
+                    return
                 } 
                 else if (result > 24.4) {
                     alert("The turbine ceases to function at wind speeds higher than 24.4m/s / 87.8kph / 54.5mph. Please enter a smaller number.")
+                    return
                 }
                 
                 // Hide input section
-                document.getElementById("input").style.display = "none"
+                //document.getElementById("input").style.display = "none"
                 // Display prediction section
-                document.getElementById("predict").style.display = "block"
+               // document.getElementById("predict").style.display = "block"
                 // Put result into input box
                 document.getElementById("windSpeed").value = result
-           }
+            }
+
+            //function displayPrediction() {
+                //document.getElementById("predict").style.display = "none"
+              //  document.getElementById("output").style.display = "block"
+                //document.getElementById("input").style.display = "none"
+            //}
+
 
         </script>   
     
