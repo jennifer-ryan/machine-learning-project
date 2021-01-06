@@ -29,7 +29,7 @@ def predict():
     # Put data through model to make a prediction
     prediction = model.predict(data)
     # Send prediction to 'predict' page
-    return render_template("index.html", prediction=prediction[0]) # just want the value, not the array
+    return render_template("index.html", prediction=f"With a wind speed of {data[0][0]}m/s the power output is {prediction[0]:.2f}kW.") # just want the value, not the array
 
 
 # Run main

@@ -46,7 +46,7 @@
                                     Please enter a number:
                                     <br>
                                     <!-- Prompt to enter a number -->
-                                    <input type="number" step="any" name="input" id="speed" required="required" placeholder="Enter number">
+                                    <input type="number" step="any" id="speed" required="required" placeholder="Enter number">
                                         <br><br>
                                         Select measurement units:
                                         <!-- Choices for wind speed units -->
@@ -62,7 +62,7 @@
                                     <div id="predict">
                                         <br>
                                         
-                                        <input type="number" step="any" name="input" id="windSpeed" value = "" required="required" placeholder="Wind Speed m/s" readonly> 
+                                        <input type="number" step="any" name="input" id="windSpeed" required="required" placeholder="Wind Speed m/s" readonly> 
                                         <br><br>
                                         <input type="submit" value="Predict Power" class="btn btn-outline-primary">
                                         <br><br>
@@ -70,9 +70,8 @@
                                     
                                     <!-- Output  -->
                                     <div id="output">
-                                        Result:  
                                         <br>
-                                        <input value={{prediction}}>
+                                        {{prediction}}
                                     </div> 
                                     
 
@@ -133,6 +132,8 @@
                 document.getElementById("windSpeed").value = result
             }
 
+            
+ 
             //function displayPrediction() {
                 //document.getElementById("predict").style.display = "none"
               //  document.getElementById("output").style.display = "block"
