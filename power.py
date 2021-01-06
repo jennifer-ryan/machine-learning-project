@@ -18,6 +18,8 @@ def index():
 # Adapted from https://medium.com/techcrush/how-to-deploy-your-ml-model-in-jupyter-notebook-to-your-flask-app-d1c4933b29b5
 # and https://medium.com/datadriveninvestor/deployment-of-machine-learning-project-using-flask-bf6e5a750319
 # and https://towardsdatascience.com/deploying-a-trained-ml-model-using-flask-541520b3cbe9
+
+# For prediction to appear on same page: https://www.analyticsvidhya.com/blog/2020/09/integrating-machine-learning-into-web-applications-with-flask/
 @app.route("/predict", methods=["POST"])
 def predict():
     # Get input from user
@@ -27,7 +29,7 @@ def predict():
     # Put data through model to make a prediction
     prediction = model.predict(data)
     # Send prediction to 'predict' page
-    return render_template("predict.html", data=prediction[0]) # just want the value, not the array
+    return render_template("index.html", prediction=prediction[0]) # just want the value, not the array
 
 
 # Run main

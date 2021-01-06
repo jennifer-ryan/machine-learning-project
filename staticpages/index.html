@@ -5,7 +5,7 @@
 
     <body>
         Input:
-        
+        <!-- -->
         <form action="{{url_for('predict')}}" method="POST">
             <!-- Input and button -->
             <input type="number" name="input" id="windSpeed" required="required" placeholder="Enter Wind Speed">
@@ -16,15 +16,15 @@
         
         <!-- Output here -->
         <div id="output">
-            
+            Prediction: {{prediction}}
         </div> 
     
         <script>
             // Get input from box and put result into another div
-            function testFunction() {
-                var output = document.getElementById("windSpeed").value
-                console.log(output)
-                document.getElementById("output").innerHTML = output
+           // function testFunction() {
+            //    var output = document.getElementById("windSpeed").value
+            //    console.log(output)
+            //    document.getElementById("output").innerHTML = output
             }
         </script>   
     
