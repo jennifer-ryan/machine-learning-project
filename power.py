@@ -24,7 +24,7 @@ def index():
 def predict():
     # Get input from user
     data = np.array(request.form["input"])
-    # change format to suit model
+    # Change format to suit model
     data = data.reshape(-1,1)
     # Put data through model to make a prediction
     prediction = model.predict(data)
@@ -32,7 +32,6 @@ def predict():
     wind_speed = float(data[0][0])
     # Send prediction back to index - formatted here
     return render_template("index.html", prediction=f"A wind speed of {wind_speed:.2f}m/s yields an estimated power output of {prediction[0]:.2f}kW.") # just want the values, not the arrays
-
 
 # Run main
 if __name__ == "__main__":
