@@ -103,12 +103,12 @@
                     result = num
                 }
                 // Checking result is in correct range
-                if (result < 0) {
-                    alert("You must enter a positive number.")
+                if (result < 0.325) {
+                    alert("The turbine does not generate power at wind speeds lower than approximately  0.325m/s / 1.17kph / 0.73mph. Please enter a larger number. ")
                     return
                 } 
                 else if (result > 24.4) {
-                    alert("The turbine ceases to function at wind speeds higher than 24.4m/s / 87.8kph / 54.5mph. Please enter a smaller number.")
+                    alert("The turbine ceases to function at wind speeds higher than approximately 24.4m/s / 87.8kph / 54.6mph. Please enter a smaller number.")
                     return
                 }
                 // Put result into input box
