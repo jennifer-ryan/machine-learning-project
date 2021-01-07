@@ -28,8 +28,10 @@ def predict():
     data = data.reshape(-1,1)
     # Put data through model to make a prediction
     prediction = model.predict(data)
-    # Send prediction to 'predict' page
-    return render_template("index.html", prediction=f"With a wind speed of {data[0][0]}m/s the power output is {prediction[0]:.2f}kW.") # just want the value, not the array
+    # Get value of wind speed to send back to page
+    wind_speed = float(data[0][0])
+    # Send prediction back to index - formatted here
+    return render_template("index.html", prediction=f"A wind speed of {wind_speed:.2f}m/s yields an estimated power output of {prediction[0]:.2f}kW.") # just want the values, not the arrays
 
 
 # Run main
