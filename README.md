@@ -6,7 +6,7 @@ The repository can be accessed [here](https://github.com/jennifer-ryan/machine-l
 
 The contents of the repository are:
 1. This **README** file that outlines the project and contains instructions on how to run the web application.
-2. **powerproduction.csv**, a CSV file that contains two columns, which represent wind speed and respective power output. This is used to train the predictive.
+2. **powerproduction.csv**, a CSV file that contains two columns, which represent wind speed and respective power output. This is used to train the predictive model.
 3. **Power Production Analysis and Models**, a Jupyter Notebook that examines the data in the CSV file and builds several prospective models. These models are compared to one another and one was chosen to be implemented in the web application: Random Forest Regression. 
 4. **model.pkl**, a pickle file that contains the Random Forest Regression model created in the Jupyter Notebook.
 5. **power.py**, a Python Flask app that runs the API. It imports the model from the pickle file, passes user input to it and sends the HTTP response back to the web page. 
